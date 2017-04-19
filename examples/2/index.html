@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<title>Capture video - Example 2 - Video to Canvas</title>
+<style>
+
+body {
+
+    height: 100vh;
+    width: 100vw;
+    display:flex;
+    overflow:hidden;  
+}
+
+ canvas{
+    image-rendering: pixelated;
+    display: block;
+    height: 80vh;
+    margin: auto;
+  }
+</style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+
+var c = { audio: false, video: { width: 480 * 2, height: 360 * 2 } },
+video = document.createElement('video'),
+canvas = document.querySelector('canvas'),
+context = canvas.getContext("2d");
+canvas.width = c.video.width;
+canvas.height = c.video.height;
+navigator.mediaDevices.getUserMedia(c)
+    .then(handleStream).catch(function(err){console.log(err)});
+
+function renderFrame(){ 
+  context.drawImage(video,0,0,c.video.width,c.video.height);
+  requestAnimationFrame(renderFrame);
+}
+
+function handleStream(stream){
+  video.srcObject = stream;
+  video.onloadedmetadata = function(e) {
+    video.play();
+    renderFrame();
+  };
+}
+
+</script>
+</body>
+</html>

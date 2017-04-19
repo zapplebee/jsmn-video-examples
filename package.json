@@ -1,0 +1,16 @@
+{
+  "name": "jsmn.videoexamples",
+  "version": "1.0.0",
+  "description": "Examples for April presentation at JavaScript MN",
+  "main": "server.js",
+  "author": "Zachary Skalko",
+  "license": "MIT",
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/zapplebee/jsmn-video-examples"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "opn": "^4.0.2"
+  }
+}

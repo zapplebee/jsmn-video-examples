@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<title>Capture video - Example 1 - Camera to video</title>
+<style>
+
+body {
+
+    height: 100vh;
+    width: 100vw;
+    display:flex;
+    overflow:hidden;  
+}
+
+  video{
+    display: block;
+    height: 80vh;
+    margin: auto;
+  }
+</style>
+</head>
+<body>
+<video autoplay="true"></video>
+<script>
+
+var constraints = {
+  audio: false,
+  video: {
+    width: { exact: 480 },
+    height: { exact: 360 }
+  }
+}
+
+navigator
+  .mediaDevices
+  .getUserMedia(constraints)
+    .then(handleStream)
+    .catch(handleError);
+
+
+function handleStream(stream){
+         var video = document.querySelector('video');
+         video.srcObject = stream;
+         video.onloadedmetadata = function(e) {
+           video.play();
+         };
+      }
+
+
+function handleError(err){
+  console.log(err);
+}
+
+
+
+</script>
+</body>
+</html>
