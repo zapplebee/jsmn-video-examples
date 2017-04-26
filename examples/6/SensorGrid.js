@@ -214,13 +214,13 @@ var sensorGrid = new SensorGrid({
 });
 sensorGrid.prepareSensoryData(SensorGrid.filters.rgbRange([
   0,
-  100
+  200
 ], [
-  100,
+  200,
   255
 ], [
   0,
-  100
+  200
 ]));
 //sensorGrid.prepareSensoryData(SensorGrid.filters.rgbNear(200,200,200,55))
 //sensorGrid.prepareSensoryData(SensorGrid.filters.channelNear('green', 200, 56));
