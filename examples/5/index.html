@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<title>Capture video - Example 5 - Motion Decection</title>
+<style>
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex-column;
+  overflow: hidden;
+}
+
+canvas {
+  image-rendering: pixelated;
+  display: block;
+  height: 80vh;
+  margin: auto;
+}
+
+input,label {
+  text-align:center;
+  font-size: 2em;
+  display:block;
+  margin: auto;
+  margin-top: 1em;
+  width: 50vw;
+  font-family: monospace;
+}
+</style>
+</head>
+<body>
+<canvas></canvas>
+<label class="motion-delta"></label>
+<label class="input-value"></label>
+<input type="range" min="0" max="3000000"/>
+<script src="main.js"></script>
+</body>
+</html>

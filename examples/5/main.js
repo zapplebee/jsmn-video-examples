@@ -6,32 +6,37 @@ var c = {
   }
 };
 var threshController = document.querySelector('input');
+var inputValueDisplayElement = document.querySelector('label.input-value');
+var motionDeltaDisplayElement = document.querySelector('label.motion-delta');
 var video = document.createElement('video'), canvas = document.querySelector('canvas'), context = canvas.getContext('2d');
 canvas.width = c.video.width;
 canvas.height = c.video.height;
 navigator.mediaDevices.getUserMedia(c).then(handleStream).catch(function (err) {
   console.log(err);
 });
+var previousFrame = false;
+var motion = false;
 function renderFrame(timestamp) {
+  inputValueDisplayElement.innerHTML = threshController.value;
   context.drawImage(video, 0, 0, c.video.width, c.video.height);
   var imageData = context.getImageData(0, 0, c.video.width, c.video.height).data;
-  context.putImageData(new ImageData(luminosity(imageData), c.video.width, c.video.height), 0, 0);
+  var delta = motionDelta(imageData, previousFrame);
+  previousFrame = imageData;
+  //if delta is 0, we're sampling frames faster than the camera is producing them
+  if (delta !== 0) {
+    motionDeltaDisplayElement.innerHTML = delta;
+    motionDeltaDisplayElement.style.backgroundColor = delta > threshController.value ? 'green' : 'red';
+  }
   requestAnimationFrame(renderFrame);
 }
-function luminosity(imageData) {
-  for (var i = 0; i < imageData.length; i = i + 4) {
-    var luminosity = 0.2126 * imageData[i] + 0.7152 * imageData[i + 1] + 0.0722 * imageData[i + 2];
-    if (luminosity < threshController.value) {
-      imageData[i] = 0;
-      imageData[i + 1] = 0;
-      imageData[i + 2] = 0;
-    } else {
-      imageData[i] = 255;
-      imageData[i + 1] = 255;
-      imageData[i + 2] = 255;
+function motionDelta(imageData, previousFrame) {
+  var delta = 0;
+  if (previousFrame) {
+    for (var i = 0; i < imageData.length; i++) {
+      delta += Math.abs(imageData[i] - previousFrame[i]);
     }
   }
-  return imageData;
+  return delta;
 }
 function handleStream(stream) {
   console.log(stream);

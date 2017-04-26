@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<title>Capture video - Example 4 - Chroma Key</title>
+<style>
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex-column;
+  overflow: hidden;
+}
+
+canvas {
+  image-rendering: pixelated;
+  display: block;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  pointer-events: none;
+}
+
+textarea {
+  font-size: 10vh;
+  width: 90vw;
+  height: 90vh;
+}
+
+</style>
+</head>
+<body>
+<canvas></canvas>
+<textarea>You can even put the video element in front of any of your other elements with chroma key.
+
+There are really a lot of things you can do with video and JavaScript.</textarea>
+<script src="main.js"></script>
+</body>
+</html>

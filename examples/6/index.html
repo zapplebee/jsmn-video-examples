@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
+<style>
+  canvas {
+    transform-origin:left top;
+    transform: scale(1);
+    image-rendering: pixelated;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  video {
+    position:absolute;
+    height: 720px;
+    width: 960px;
+    transform: scaleX(-1);
+  }
+
+  img {
+    position: absolute;
+    z-index: 5;
+    margin-top: -200px;
+    margin-left: -200px;
+    top: -1000px;
+    left: -1000px;
+  }
+
+
+</style>
+</head>
+<body>
+<video></video>
+<img src="nyan.gif">
+<script src="SensorGrid.js"></script>
+</body>
+</html>
