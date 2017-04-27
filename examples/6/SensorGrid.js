@@ -53,6 +53,7 @@ function SensorGrid(config) {
       video.play();
       describeSize(c.video.width, c.video.height);
       renderFrame();
+      getPx();
     };
   }
   function renderFrame() {
@@ -214,13 +215,13 @@ var sensorGrid = new SensorGrid({
 });
 sensorGrid.prepareSensoryData(SensorGrid.filters.rgbRange([
   0,
-  200
+  100
 ], [
   200,
   255
 ], [
   0,
-  200
+  100
 ]));
 //sensorGrid.prepareSensoryData(SensorGrid.filters.rgbNear(200,200,200,55))
 //sensorGrid.prepareSensoryData(SensorGrid.filters.channelNear('green', 200, 56));
@@ -248,6 +249,3 @@ function getPx() {
   }
   requestAnimationFrame(getPx);
 }
-document.addEventListener('keypress', function (e) {
-  getPx();
-});
